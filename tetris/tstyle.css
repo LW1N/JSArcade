@@ -2,12 +2,66 @@
   font-family: 'Press Start 2P', cursive;
 }
 
+#top, #bottom, #left, #right {
+  background: #faab00;
+	position: fixed;
+}
+
+#left, #right {
+	top: 0; bottom: 0;
+	width: 40px;
+}
+
+#left { 
+  left: 0; 
+}
+
+#right { 
+  right: 0; 
+}
+
+#top, #bottom {
+	left: 0; right: 0;
+	height: 40px;
+}
+
+#top { 
+  top: 0; 
+}
+
+#bottom { 
+  bottom: 0; 
+}
+
+/* No border for smaller screens*/
+@media 
+/* Fairly small screens including iphones */
+only screen and (max-width: 500px),
+/* iPads */
+only screen and (min-device-width: 768px) and (max-device-width: 1024px) 
+{
+	#top, #bottom, #left, #right { display: none; }
+}
+
+html {
+  background-color: rgb(255, 255, 255);
+  /* border: inset 50px;
+  margin: 0px;
+  height: 100%; */
+}
+
+body {
+  margin: 0;
+  /* min-height: 100%;
+  overflow: scroll; */
+  border-radius: 5px;
+}
+
 .grid {
   display: grid;
-  grid-template-columns: 350px 320px 200px;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* 350px 320px 200px; */
+  margin: 60px;
 }
 
 .left-column {
@@ -22,6 +76,8 @@
 }
 
 .game-board {
+  display: flex;
+  flex-direction: column;
   border: solid 2px;
 }
 
@@ -42,4 +98,10 @@
 
 .sound-item{
   cursor:pointer;
+}
+
+footer {
+  text-align: center;
+  color: rgb(0, 0, 0);
+  font-size: 25px;
 }
