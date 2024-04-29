@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 
+        stuff
+        -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Poker</title>
+        <meta name="description" content="Poker Game">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="bstyle.css">
+    </head>
+    Dealer:
+    <div id="board" style="display: block;">
+        <div id="card1"></div>
+        <div id="card2"></div>
+        <div id="card3"></div>
+        <div id="card4"></div>
+        <div id="card5"></div>
+    </div>
+    <hr/>
+    Player:
+    <div id="playerCards">
+        <div id="playerCard1"></div>
+        <div id="playerCard2"></div>
+        <div id="playerCard3"></div>
+        <div id="playerCard4"></div>
+        <div id="playerCard5"></div>
+        <button onclick="javascript: nextStep(this);"> 
+            Hit 
+        </button>
+        <button onclick="javascript: dealerPlays(this);"> 
+            Stay
+        </button>
+    </div> 
+    <script src="bscript.js"></script>
+</html>
