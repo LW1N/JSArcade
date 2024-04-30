@@ -39,13 +39,14 @@ Sound.prototype.muteToggle = function(){
         document.querySelector("#sound-speaker").innerHTML = "\u{1F507}";
         document.querySelector("#sound-description").innerHTML = "off";
         this.muted = true;
-    }else{
-      for(let sound of this.sounds){
-          sound.muted = false;
-      }
-      document.querySelector("#sound-speaker").innerHTML = "\u{1F509}";
-      document.querySelector("#sound-description").innerHTML = "on";
-      this.muted = false;
+    }
+    else{
+        for(let sound of this.sounds){
+            sound.muted = false;
+        }
+        document.querySelector("#sound-speaker").innerHTML = "\u{1F509}";
+        document.querySelector("#sound-description").innerHTML = "on";
+        this.muted = false;
     }
 };
 
