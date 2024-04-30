@@ -1,3 +1,7 @@
+// const canvas = document.getElementById('board');
+// const ctx = canvas.getContext('2d');
+
+
 class Deck {
     constructor() {
         this.deck = [];
@@ -71,7 +75,7 @@ class Card {
         this.position = suits[this.suit] + this.value;
     } 
 
-    // Initial position of the card(flipped = true -> face up, false -> face down)
+    // Initial position of the card(flipped = false -> face up, true -> face down)
     displayCard(placeHolder,flipped=true) {
         this.placeHolder = document.getElementById(placeHolder);
         this.placeHolder.classList.add("card");
@@ -102,6 +106,9 @@ const deck = new Deck();
 // Arrays to hold player and dealer cards
 let dealerCards = [5];
 let playerCards = [5];
+// Variables hold hand totals
+let playerTotal = 0;
+let dealerTotal = 0;
 
 // Deal out cards
 function deal() {
@@ -118,57 +125,96 @@ function deal() {
     }
 
     // Initial positions of cards
-    dealerCards[0].displayCard("card1",true);  
-    dealerCards[1].displayCard("card2",false);  
-    dealerCards[2].displayCard("card3",false);  
-    dealerCards[3].displayCard("card4",false);  
-    dealerCards[4].displayCard("card5",false);  
-    playerCards[0].displayCard("playerCard1",true);  
-    playerCards[1].displayCard("playerCard2",true); 
-    playerCards[2].displayCard("playerCard3",false);  
-    playerCards[3].displayCard("playerCard4",false);  
-    playerCards[4].displayCard("playerCard5",false); 
+    dealerCards[0].displayCard("card1",true);
+    dealerCards[1].displayCard("card2",false);
+    dealerCards[2].displayCard("card3",false);
+    dealerCards[3].displayCard("card4",false);
+    dealerCards[4].displayCard("card5",false);
+    playerCards[0].displayCard("playerCard1",true);
+    playerCards[1].displayCard("playerCard2",true);
+    playerCards[2].displayCard("playerCard3",false);
+    playerCards[3].displayCard("playerCard4",false);
+    playerCards[4].displayCard("playerCard5",false);
+
+    // Initial value of player/dealer's hands
+    playerTotal = checkCardValue(playerCards[0]) + checkCardValue(playerCards[1]);
+    dealerTotal = checkCardValue(dealerCards[0]) + checkCardValue(dealerCards[1]);
+}
+
+// Check if card is > 10, and cap if so
+function checkCardValue(card) {
+    if (card.value > 10) {
+        return 10;
+    }
+
+    else {
+        return card.value;
+    }
 }
 
 
 // When button is pressed, reveal a card
 function nextStep(button) {
-    if (!playerCards[2].flipped) {
-        playerCards[2].flip();
-        button.innerHTML="Hit";
-    } 
-    else if(!playerCards[3].flipped) {
-        playerCards[3].flip();
-        button.innerHTML="Hit";
-    } 
-    else if(!playerCards[4].flipped) {
-        playerCards[4].flip();
-        button.innerHTML="New Round";
-    }
-    else {
+    // Reset game
+    if (button.innerHTML === "New Round") {
         deal();
         button.innerHTML="Hit";
+        return;
+    }
+    
+    if (!playerCards[2].flipped) {
+        playerCards[2].flip();
+        playerTotal += checkCardValue(playerCards[2]);        
+    } 
+
+    else if(!playerCards[3].flipped) {
+        playerCards[3].flip();
+        playerTotal += checkCardValue(playerCards[3]);
+    }
+
+    else if(!playerCards[4].flipped) {
+        playerCards[4].flip();
+        playerTotal += checkCardValue(playerCards[4]);
+    }
+
+    // If at or greater than 21 can't hit anymore, prep reset
+    if (playerTotal >= 21) {
+        button.innerHTML="New Round";
+        dealerPlays();
     }
 }
 
 // Have the dealer try to hit 21 after pressing 'Stay'
 function dealerPlays(button) {
+    // Reveal the 2nd card
     dealerCards[1].flip();
 
-    setTimeout(function() {
-        //your code to be executed after 1 second
-    }, 100);
-    let dealerTotal = dealerCards[0].value + dealerCards[1].value;
+    // Flip over cards unless at 18, play 'smartly'
     let i = 2;
-    while (dealerTotal < 21 && i < 5) {
+    while (dealerTotal < 18 && i < 5) {
         dealerCards[i].flip();
-        dealerTotal += dealerCards[i];
+        dealerTotal += checkCardValue(dealerCards[i]);
         i++;
     }
-}
 
-setTimeout(function() {
-    //your code to be executed after 1 second
-  }, 100);
+    // Dealer bust
+    if (dealerTotal > 21) {
+        setTimeout(function() {
+            alert("DEALER BUST - YOU WIN!");
+        }, 0)
+    }
+
+    else if (dealerTotal > playerTotal) {
+        setTimeout(function() {
+            alert("DEALER WINS - YOU LOSE!");
+        }, 0)
+    }
+
+    else {
+        setTimeout(function() {
+            alert("YOU WIN!");
+        }, 0)
+    }
+}
 
 deal();
