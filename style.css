@@ -6,6 +6,47 @@ html {
     background-attachment: fixed; */
 }
 
+#top, #bottom, #left, #right {
+    background: #141414;
+    position: fixed;
+}
+  
+#left, #right {
+    top: 0; bottom: 0;
+    width: 40px;
+}
+  
+#left { 
+    left: 0; 
+}
+  
+#right { 
+    right: 0; 
+}
+  
+#top, #bottom {
+    left: 0; right: 0;
+    height: 40px;
+}
+  
+#top { 
+    top: 0; 
+}
+  
+#bottom { 
+    bottom: 0; 
+}
+  
+/* No border for smaller screens*/
+@media 
+/* Fairly small screens including iphones */
+only screen and (max-width: 500px),
+/* iPads */
+only screen and (min-device-width: 768px) and (max-device-width: 1024px) 
+{
+    #top, #bottom, #left, #right { display: none; }
+}
+
 @media (min-width: 1400px) {
     section, p {
         margin: 40px;
@@ -67,7 +108,7 @@ html {
 }
 
 body {
-    margin: 0;
+    margin: 50px;
 }
 
 header {

@@ -1,3 +1,57 @@
+* {
+    font-family: 'Press Start 2P', cursive;
+}
+html {
+    background-color: #0c7e1f;
+    /* border: inset 50px;
+    margin: 0px;
+    height: 100%; */
+}
+  
+#top, #bottom, #left, #right {
+    background: #141414;
+    position: fixed;
+}
+  
+#left, #right {
+    top: 0; bottom: 0;
+    width: 40px;
+}
+  
+#left { 
+    left: 0; 
+}
+  
+#right { 
+    right: 0; 
+}
+  
+#top, #bottom {
+    left: 0; right: 0;
+    height: 40px;
+}
+  
+#top { 
+    top: 0; 
+}
+  
+#bottom { 
+    bottom: 0; 
+}
+  
+/* No border for smaller screens*/
+@media 
+/* Fairly small screens including iphones */
+only screen and (max-width: 500px),
+/* iPads */
+only screen and (min-device-width: 768px) and (max-device-width: 1024px) 
+{
+    #top, #bottom, #left, #right { display: none; }
+}
+
+body {
+    margin: 50px;
+}
 
 #board, #playerCards {
     display: block;

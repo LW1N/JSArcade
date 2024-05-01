@@ -3,7 +3,7 @@
 }
 
 #top, #bottom, #left, #right {
-  background: #faab00;
+  background: #141414;
 	position: fixed;
 }
 
@@ -44,7 +44,7 @@ only screen and (min-device-width: 768px) and (max-device-width: 1024px)
 }
 
 html {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(96, 216, 224);
   /* border: inset 50px;
   margin: 0px;
   height: 100%; */
@@ -54,7 +54,6 @@ body {
   margin: 0;
   /* min-height: 100%;
   overflow: scroll; */
-  border-radius: 5px;
 }
 
 .grid {
@@ -78,7 +77,9 @@ body {
 .game-board {
   display: flex;
   flex-direction: column;
-  border: solid 2px;
+  border: solid 2px rgb(141, 138, 138);
+  border-radius: 5px;
+  background-color: #252525;
 }
 
 .play-button {

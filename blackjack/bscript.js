@@ -175,12 +175,16 @@ function nextStep(button) {
     else if(!playerCards[4].flipped) {
         playerCards[4].flip();
         playerTotal += checkCardValue(playerCards[4]);
+        button.innerHTML="New Round";
+        dealerPlays();
+        return;
     }
 
     // If at or greater than 21 can't hit anymore, prep reset
     if (playerTotal >= 21) {
         button.innerHTML="New Round";
         dealerPlays();
+        return;
     }
 }
 
@@ -188,6 +192,15 @@ function nextStep(button) {
 function dealerPlays(button) {
     // Reveal the 2nd card
     dealerCards[1].flip();
+
+    // Player bust
+    if (playerTotal > 21) {
+        setTimeout(function() {
+            alert("YOU BUST - YOU LOSE!");
+        }, 250)
+
+        return;
+    }
 
     // Flip over cards unless at 18, play 'smartly'
     let i = 2;
@@ -201,19 +214,19 @@ function dealerPlays(button) {
     if (dealerTotal > 21) {
         setTimeout(function() {
             alert("DEALER BUST - YOU WIN!");
-        }, 0)
+        }, 250)
     }
 
     else if (dealerTotal > playerTotal) {
         setTimeout(function() {
             alert("DEALER WINS - YOU LOSE!");
-        }, 0)
+        }, 250)
     }
 
     else {
         setTimeout(function() {
             alert("YOU WIN!");
-        }, 0)
+        }, 250)
     }
 }
 
