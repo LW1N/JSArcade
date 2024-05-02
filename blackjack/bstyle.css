@@ -9,7 +9,7 @@ html {
 }
   
 #top, #bottom, #left, #right {
-    background: #141414;
+    background: #383838;
     position: fixed;
 }
   
@@ -32,11 +32,21 @@ html {
 }
   
 #top { 
-    top: 0; 
+    top: 0;
+    border-top: 40px solid #222222;
+	border-left: 40px solid transparent;
+	border-right: 40px solid transparent;
+	height: 0;
+	width: auto;
 }
   
 #bottom { 
     bottom: 0; 
+    border-bottom: 40px solid #222222;
+	border-left: 40px solid transparent;
+	border-right: 40px solid transparent;
+	height: 0;
+	width: auto;
 }
   
 /* No border for smaller screens*/
