@@ -61,39 +61,20 @@ only screen and (min-device-width: 768px) and (max-device-width: 1024px)
 }
 
 @media (min-width: 1400px) {
-    section, p {
-        margin: 20px;
-    }
-
     #art1 .artimg {
         float: left;
-        margin-left: 40px;
+        margin-left: 100px;
         margin-top: 60px;
     }
 
     #art2 .artimg {
         float: right;
-        margin-right: 40px;
+        margin-right: 100px;
         margin-top: 60px;
-    }
-
-    footer {
-        clear: both;
     }
 }
 
 @media (max-width: 1400px) {
-    section {
-        margin: 20px;
-    }
-
-    p {
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 20px;
-        margin-top: 20px;
-    }
-
     #art1 .artimg {
         display: block;
         margin-left: auto;
@@ -122,7 +103,22 @@ header {
     text-align: center;
     color: rgb(255, 255, 255);
     font-size: 40px;
+    color: #fff;
+    text-align: center;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
 }
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+  }
+}
+
 
 section, p {
     border-radius: 25px;
@@ -148,18 +144,20 @@ article img:hover {
     height: auto;
 }
 
-#art1 p {
-    max-width: 55%;
-}
-
 #art2 .artimg {
     border-radius: 25px;
     max-width: 30%;
     height: auto;
 }
 
-#art2 p {
-    max-width: 55%;
+#art3 .artimg {
+    border-radius: 25px;
+    max-width: 30%;
+    height: auto;
+    clear: both;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 footer {
@@ -167,6 +165,7 @@ footer {
     color: rgb(255, 255, 255);
     font-size: 25px;
     font-style: italic;
+    margin: 50px;
 }
 
 #uparrow {
