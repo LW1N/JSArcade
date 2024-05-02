@@ -155,13 +155,7 @@ function checkCardValue(card) {
 
 // When button is pressed, reveal a card
 function nextStep(button) {
-    // Reset game
-    if (button.innerHTML === "New Round") {
-        deal();
-        button.innerHTML="Hit";
-        return;
-    }
-    
+    // Check which card to flip if button is pressed
     if (!playerCards[2].flipped) {
         playerCards[2].flip();
         playerTotal += checkCardValue(playerCards[2]);        
@@ -171,18 +165,16 @@ function nextStep(button) {
         playerCards[3].flip();
         playerTotal += checkCardValue(playerCards[3]);
     }
-
+    // If flipping last card, dealer will then play
     else if(!playerCards[4].flipped) {
         playerCards[4].flip();
         playerTotal += checkCardValue(playerCards[4]);
-        button.innerHTML="New Round";
         dealerPlays();
         return;
     }
 
     // If at or greater than 21 can't hit anymore, prep reset
     if (playerTotal >= 21) {
-        button.innerHTML="New Round";
         dealerPlays();
         return;
     }
@@ -197,8 +189,8 @@ function dealerPlays(button) {
     if (playerTotal > 21) {
         setTimeout(function() {
             alert("YOU BUST - YOU LOSE!");
+            deal();
         }, 250)
-
         return;
     }
 
@@ -214,18 +206,23 @@ function dealerPlays(button) {
     if (dealerTotal > 21) {
         setTimeout(function() {
             alert("DEALER BUST - YOU WIN!");
+            deal();
         }, 250)
     }
 
+    // Dealer has higher hand
     else if (dealerTotal > playerTotal) {
         setTimeout(function() {
             alert("DEALER WINS - YOU LOSE!");
+            deal();
         }, 250)
     }
 
+    // Player has higher hand
     else {
         setTimeout(function() {
             alert("YOU WIN!");
+            deal();
         }, 250)
     }
 }
